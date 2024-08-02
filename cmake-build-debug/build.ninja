@@ -47,12 +47,12 @@ cmake_ninja_workdir = /home/duong/Code/DiamondRush/cmake-build-debug/
 #############################################
 # Order-only phony target for DiamondRush
 
-build cmake_object_order_depends_target_DiamondRush: phony || CMakeFiles/DiamondRush.dir
+build cmake_object_order_depends_target_DiamondRush: phony || cmake_object_order_depends_target_Display cmake_object_order_depends_target_Resource
 
 build CMakeFiles/DiamondRush.dir/main.cpp.o: CXX_COMPILER__DiamondRush_unscanned_Debug /home/duong/Code/DiamondRush/main.cpp || cmake_object_order_depends_target_DiamondRush
   DEP_FILE = CMakeFiles/DiamondRush.dir/main.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -isystem /usr/local/include/SDL2
+  INCLUDES = -I/home/duong/Code/DiamondRush/Resource -I/home/duong/Code/DiamondRush/Display -isystem /usr/local/include/SDL2
   OBJECT_DIR = CMakeFiles/DiamondRush.dir
   OBJECT_FILE_DIR = CMakeFiles/DiamondRush.dir
 
@@ -64,9 +64,9 @@ build CMakeFiles/DiamondRush.dir/main.cpp.o: CXX_COMPILER__DiamondRush_unscanned
 #############################################
 # Link the executable DiamondRush
 
-build DiamondRush: CXX_EXECUTABLE_LINKER__DiamondRush_Debug CMakeFiles/DiamondRush.dir/main.cpp.o | /usr/local/lib/libSDL2.so
+build DiamondRush: CXX_EXECUTABLE_LINKER__DiamondRush_Debug CMakeFiles/DiamondRush.dir/main.cpp.o | Resource/libResource.a Display/libDisplay.a /usr/local/lib/libSDL2.so || Display/libDisplay.a Resource/libResource.a
   FLAGS = -g
-  LINK_LIBRARIES = -Wl,-rpath,/usr/local/lib  /usr/local/lib/libSDL2.so
+  LINK_LIBRARIES = -Wl,-rpath,/usr/local/lib  Resource/libResource.a  Display/libDisplay.a  /usr/local/lib/libSDL2.so
   LINK_PATH = -L/usr/local/lib
   OBJECT_DIR = CMakeFiles/DiamondRush.dir
   POST_BUILD = :
@@ -98,7 +98,163 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/duong/Code/DiamondRush/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target Resource
+
+
+#############################################
+# Order-only phony target for Resource
+
+build cmake_object_order_depends_target_Resource: phony || Resource/CMakeFiles/Resource.dir
+
+build Resource/CMakeFiles/Resource.dir/Player.cpp.o: CXX_COMPILER__Resource_unscanned_Debug /home/duong/Code/DiamondRush/Resource/Player.cpp || cmake_object_order_depends_target_Resource
+  DEP_FILE = Resource/CMakeFiles/Resource.dir/Player.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/home/duong/Code/DiamondRush/Resource -isystem /usr/local/include/SDL2
+  OBJECT_DIR = Resource/CMakeFiles/Resource.dir
+  OBJECT_FILE_DIR = Resource/CMakeFiles/Resource.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Resource
+
+
+#############################################
+# Link the static library Resource/libResource.a
+
+build Resource/libResource.a: CXX_STATIC_LIBRARY_LINKER__Resource_Debug Resource/CMakeFiles/Resource.dir/Player.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = Resource/CMakeFiles/Resource.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = Resource/libResource.a
+  TARGET_PDB = Resource.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build Resource/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/duong/Code/DiamondRush/cmake-build-debug/Resource && /opt/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Resource/edit_cache: phony Resource/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Resource/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/duong/Code/DiamondRush/cmake-build-debug/Resource && /opt/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/duong/Code/DiamondRush -B/home/duong/Code/DiamondRush/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Resource/rebuild_cache: phony Resource/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/duong/Code/DiamondRush/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target Display
+
+
+#############################################
+# Order-only phony target for Display
+
+build cmake_object_order_depends_target_Display: phony || Display/CMakeFiles/Display.dir
+
+build Display/CMakeFiles/Display.dir/Windows.cpp.o: CXX_COMPILER__Display_unscanned_Debug /home/duong/Code/DiamondRush/Display/Windows.cpp || cmake_object_order_depends_target_Display
+  DEP_FILE = Display/CMakeFiles/Display.dir/Windows.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/home/duong/Code/DiamondRush/Display -isystem /usr/local/include/SDL2
+  OBJECT_DIR = Display/CMakeFiles/Display.dir
+  OBJECT_FILE_DIR = Display/CMakeFiles/Display.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Display
+
+
+#############################################
+# Link the static library Display/libDisplay.a
+
+build Display/libDisplay.a: CXX_STATIC_LIBRARY_LINKER__Display_Debug Display/CMakeFiles/Display.dir/Windows.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = Display/CMakeFiles/Display.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = Display/libDisplay.a
+  TARGET_PDB = Display.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build Display/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/duong/Code/DiamondRush/cmake-build-debug/Display && /opt/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Display/edit_cache: phony Display/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Display/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/duong/Code/DiamondRush/cmake-build-debug/Display && /opt/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/duong/Code/DiamondRush -B/home/duong/Code/DiamondRush/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Display/rebuild_cache: phony Display/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/duong/Code/DiamondRush/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
+build Logic/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/duong/Code/DiamondRush/cmake-build-debug/Logic && /opt/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Logic/edit_cache: phony Logic/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Logic/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/duong/Code/DiamondRush/cmake-build-debug/Logic && /opt/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/duong/Code/DiamondRush -B/home/duong/Code/DiamondRush/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Logic/rebuild_cache: phony Logic/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
 # Target aliases.
+
+build Display: phony Display/libDisplay.a
+
+build Resource: phony Resource/libResource.a
+
+build libDisplay.a: phony Display/libDisplay.a
+
+build libResource.a: phony Resource/libResource.a
 
 # =============================================================================
 # Folder targets.
@@ -108,7 +264,28 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/duong/Code/DiamondRush/cmake-build-debug
 
-build all: phony DiamondRush
+build all: phony DiamondRush Resource/all Display/all Logic/all
+
+# =============================================================================
+
+#############################################
+# Folder: /home/duong/Code/DiamondRush/cmake-build-debug/Display
+
+build Display/all: phony Display/libDisplay.a
+
+# =============================================================================
+
+#############################################
+# Folder: /home/duong/Code/DiamondRush/cmake-build-debug/Logic
+
+build Logic/all: phony
+
+# =============================================================================
+
+#############################################
+# Folder: /home/duong/Code/DiamondRush/cmake-build-debug/Resource
+
+build Resource/all: phony Resource/libResource.a
 
 # =============================================================================
 # Built-in targets
@@ -117,14 +294,14 @@ build all: phony DiamondRush
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/duong/Code/DiamondRush/CMakeLists.txt /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FeatureSummary.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/SDL2/sdl2-config-version.cmake /usr/local/lib/cmake/SDL2/sdl2-config.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/duong/Code/DiamondRush/CMakeLists.txt /home/duong/Code/DiamondRush/Display/CMakeLists.txt /home/duong/Code/DiamondRush/Logic/CMakeLists.txt /home/duong/Code/DiamondRush/Resource/CMakeLists.txt /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FeatureSummary.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/SDL2/sdl2-config-version.cmake /usr/local/lib/cmake/SDL2/sdl2-config.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/duong/Code/DiamondRush/CMakeLists.txt /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FeatureSummary.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/SDL2/sdl2-config-version.cmake /usr/local/lib/cmake/SDL2/sdl2-config.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake: phony
+build /home/duong/Code/DiamondRush/CMakeLists.txt /home/duong/Code/DiamondRush/Display/CMakeLists.txt /home/duong/Code/DiamondRush/Logic/CMakeLists.txt /home/duong/Code/DiamondRush/Resource/CMakeLists.txt /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FeatureSummary.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /opt/clion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/local/lib/cmake/SDL2/sdl2-config-version.cmake /usr/local/lib/cmake/SDL2/sdl2-config.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake: phony
 
 
 #############################################

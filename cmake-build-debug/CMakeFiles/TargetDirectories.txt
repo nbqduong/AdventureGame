@@ -1,3 +1,11 @@
 /home/duong/Code/DiamondRush/cmake-build-debug/CMakeFiles/DiamondRush.dir
 /home/duong/Code/DiamondRush/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/duong/Code/DiamondRush/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Resource/CMakeFiles/Resource.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Resource/CMakeFiles/edit_cache.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Resource/CMakeFiles/rebuild_cache.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Display/CMakeFiles/Display.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Display/CMakeFiles/edit_cache.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Display/CMakeFiles/rebuild_cache.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Logic/CMakeFiles/edit_cache.dir
+/home/duong/Code/DiamondRush/cmake-build-debug/Logic/CMakeFiles/rebuild_cache.dir
