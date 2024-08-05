@@ -30,7 +30,11 @@ public:
 
     void checkEvent(SDL_Event &event);
 
-    void setWindowSurface(const SDL_Rect * rect, Uint32 color) const;
+    void setSurface(const SDL_Rect * rect, Uint32 color) const;
+
+    void setRender();
+
+    inline SDL_Renderer* getRenderer(){return mRenderer;}
 
     ~Windows();
 };

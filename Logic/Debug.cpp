@@ -19,11 +19,15 @@ void Debug::BasePrint(T first, Args... args) {
 #endif
 }
 
-void Debug::ConsoleMessage(const char* mess) {
+void Debug::Console(const char* mess) {
     BasePrint("[Debug]: ", mess);
 
 }
 
 void Error::SdlError(const char *mess, const char *sdl_error) {
     std::cout << "[Error] " << mess << " SDL error: "<< sdl_error << std::endl;
+}
+
+void Error::Fatal(const char *mess) {
+    std::cout << "[Fatal Error] " << mess << std::endl;
 }

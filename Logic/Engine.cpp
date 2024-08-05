@@ -5,43 +5,58 @@
 #include "Engine.h"
 
 Engine::Engine() {
-    //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-    {
-        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
-    }
-    else {
-        std::shared_ptr<Windows> my_windows = std::make_shared<Windows>();
 
-        // my_windows
-
-        bool game;
-        SDL_Event event;
-        //Wait two seconds
-
-        while (my_windows->isRunning() == WindowsPar::emWindowRunning) {
-
-            my_windows->checkEvent(event);
-            Debug::ConsoleMessage("running");
-
-        }
-    }
 }
 
 std::shared_ptr<Engine> Engine::getInstance()
 {
-    std::call_once(initFlag, []() {
-            engine_.reset(new Engine());  // Create the Singleton instance
-        });
-    return engine_;
+    if(mEngine == nullptr) {
+        mEngine = std::shared_ptr<Engine>(new Engine);
+        return mEngine;
+    }
+    return mEngine;
+}
+
+bool Engine::Init() {
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_VIDEO ) < 0  && IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) != 0)
+    {
+        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+        return false;
+    }
+    else {
+        mMainWindow = std::make_shared<Windows>();
+    }
+    return true;
+}
+
+void Engine::Start() {
+    if(Init() == false) {
+        Error::Fatal("False to init");
+    }
+    if(TextureManager::GetInstance()->Load("tree","../assets/tree.png")) {
+        // my_windows
+        bool game;
+        SDL_Event event;
+        //Wait two seconds
+
+        while (mMainWindow->isRunning() == WindowsPar::emWindowRunning) {
+
+            mMainWindow->checkEvent(event);
+            mMainWindow->setRender();
+            Debug::Console("running");
+
+        }
+    }
+
 }
 
 Engine::~Engine() {
-    Debug::ConsoleMessage("Engine Destructor");
+    Debug::Console("Engine Destructor");
     //Quit SDL subsystems
     SDL_Quit();
 }
 
-std::shared_ptr<Engine> Engine::engine_ = nullptr;
-std::once_flag Engine::initFlag;
+std::shared_ptr<Engine> Engine::mEngine = nullptr;
+std::once_flag Engine::mInitFlag;
 

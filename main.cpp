@@ -5,16 +5,16 @@
 #include "Parameters.h"
 #include "Logic/Engine.h"
 #include "Logic/Engine.h"
+#include <string>
 
 
 
-
-int main( int argc, char* args[] )
+int main( int argc, char *argv[] )
 {
-    Engine::getInstance();
-    return 0;
+    Engine::getInstance()->Start();
+    
+    return EXIT_SUCCESS;
 }
-
 
 
 

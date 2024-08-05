@@ -9,14 +9,20 @@
 #include <mutex>
 #include <SDL2/SDL.h>
 #include"../Display/Windows.h"
+#include "../Display/TextureManager.h"
 
 class Engine {
 private:
-     static std::shared_ptr<Engine> engine_;
-     static std::once_flag initFlag;
+     static std::shared_ptr<Engine> mEngine;
+     static std::once_flag mInitFlag;
+     std::shared_ptr<Windows> mMainWindow{nullptr};
      Engine();
 public:
      static std::shared_ptr<Engine> getInstance();
+     inline std::shared_ptr<Windows> getMainWindow(){return mMainWindow;}
+
+     bool Init();
+     void Start();
 
      ~Engine();
 };
