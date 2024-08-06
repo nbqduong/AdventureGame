@@ -34,25 +34,28 @@ void Engine::Start() {
     if(Init() == false) {
         Error::Fatal("False to init");
     }
-    if(TextureManager::GetInstance()->Load("tree","../assets/tree.png")) {
-        // my_windows
-        bool game;
-        SDL_Event event;
-        //Wait two seconds
 
-        while (mMainWindow->isRunning() == WindowsPar::emWindowRunning) {
+    std::shared_ptr<Hero> hero = std::make_shared<Hero>("../assets/face.png","tree", 0,0,64 ,64),
+        hero2 = std::make_shared<Hero>("../assets/face.png","hel", 100,100,64 ,64);
 
-            mMainWindow->checkEvent(event);
-            mMainWindow->setRender();
-            Debug::Console("running");
 
-        }
+    std::vector<std::shared_ptr<Object>> objects{hero, hero2};
+
+    SDL_Event event;
+    while (mMainWindow->isRunning() == WindowsPar::emWindowRunning) {
+        hero->Move(Direction::Down);
+        mMainWindow->checkEvent(event);
+        mMainWindow->setRender(objects);
+        Debug::Console("running");
+        SDL_Delay(100);
     }
-
 }
 
 Engine::~Engine() {
-    Debug::Console("Engine Destructor");
+    TextureManager::GetInstance()->Clean();
+    SDL_Log("Engine Destructor");
+    //Quit IMG
+    IMG_Quit();
     //Quit SDL subsystems
     SDL_Quit();
 }

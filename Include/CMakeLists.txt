@@ -1,15 +1,11 @@
-set(libname "Display")
+set(libname "Include")
 
 set(SOURCES_FILES
-        Hero.cpp
-        Windows.cpp
-        TextureManager.cpp
-        GamePosition.cpp
-        GamePosition.h
+        Debug.cpp
 )
 
 set(INTERNAL_LIBS
-        Include
+
 )
 
 set(SDL2_IMAGE_LIBRARIES "/usr/local/lib/libSDL2_image.so")
@@ -19,7 +15,6 @@ add_library(${libname} SHARED ${SOURCES_FILES})
 # Specify include directories for this library
 target_include_directories(${libname}  PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_SOURCE_DIR}/Include
 )
 
 # package

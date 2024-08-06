@@ -9,24 +9,29 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include <map>
-#include "Windows.h"
-#include "../Logic/Engine.h"
+#include <memory>
+#include <Debug.h>
+#include <GamePosition.h>
+#include <Parameters.h>
+
 
 class TextureManager {
         public:
-        static TextureManager* GetInstance(){ return s_Instance = (s_Instance != nullptr)? s_Instance : new TextureManager();}
+        static std::shared_ptr<TextureManager> GetInstance(){ return sInstance = (sInstance != nullptr)? sInstance : std::shared_ptr<TextureManager>(new TextureManager());}
 
         bool Load(std::string id, std::string filename);
         void Drop(std::string id);
         void Clean();
 
         void Draw(std::string id, int x, int y, int width, int heigt, SDL_RendererFlip flip=SDL_FLIP_NONE);
-        void DrawFrame(std::string id, int x, int y, int width, int heigt, int row, int frame, SDL_RendererFlip flip=SDL_FLIP_NONE);
-
+        void DrawFrame(std::string id, XYWH &src, XYWH &dst, SDL_RendererFlip flip=SDL_FLIP_NONE);
+        void setRenderer(SDL_Renderer* renderer);
+        ~TextureManager();
     private:
         TextureManager(){}
-        std::map<std::string, SDL_Texture*> m_TextureMap;
-        static TextureManager* s_Instance;
+        std::map<std::string, SDL_Texture*> mTextureMap;
+        SDL_Renderer* mRenderer;
+        static std::shared_ptr<TextureManager> sInstance;
 };
 
 

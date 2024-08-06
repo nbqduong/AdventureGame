@@ -8,11 +8,12 @@
 #include <memory>
 #include <mutex>
 #include <SDL2/SDL.h>
-#include"../Display/Windows.h"
-#include "../Display/TextureManager.h"
+#include <Windows.h>
+// #include <Hero.h>
 
 class Engine {
 private:
+     // Hero H;
      static std::shared_ptr<Engine> mEngine;
      static std::once_flag mInitFlag;
      std::shared_ptr<Windows> mMainWindow{nullptr};

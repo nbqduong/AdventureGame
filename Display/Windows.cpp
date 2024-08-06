@@ -4,8 +4,7 @@
 
 #include "Windows.h"
 
-#include <mutex>
-#include <TextureManager.h>
+
 
 Windows::Windows(const char* windows_name, uint16_t width, uint16_t height)
         : mWidth(width),
@@ -28,7 +27,7 @@ WindowsPar Windows::create(const char *name, uint16_t width, uint16_t height) {
         Error::SdlError("Could not get window rederer!", SDL_GetError());
         return WindowsPar::emWindowsCreateFail;
     }
-
+    TextureManager::GetInstance()->setRenderer(mRenderer);
     mStatus = WindowsPar::emWindowRunning;
     return  WindowsPar::emWindowsCreateSucessfull;
 
@@ -42,25 +41,24 @@ void Windows::checkEvent(SDL_Event &event) {
     }
 }
 
-void Windows::setSurface(const SDL_Rect *rect, Uint32 color) const {
-    //Fill the surface white
-    SDL_FillRect( mScreenSurface, rect, color );
-    //Update the surface
-    SDL_UpdateWindowSurface( mWindow );
-}
+void Windows::setRender(std::vector<std::shared_ptr<Object>> &obj) {
 
-void Windows::setRender() {
     SDL_SetRenderDrawColor(mRenderer, 193, 224, 245,255);
     SDL_RenderClear(mRenderer);
 
-    TextureManager::GetInstance()->Draw("tree", 100,100,347,365);
+    for (auto const &i : obj)
+        i->Load();
+    //TextureManager::GetInstance()->Draw("tree", 100,100,64,64);
     SDL_RenderPresent(mRenderer);
 }
 
 Windows::~Windows() {
     Debug::Console("Windows destructor");
-
+    //Destroy Renderer
+    SDL_DestroyRenderer(mRenderer);
+    SDL_Log("Destroy renderer");
     //Destroy window
     SDL_DestroyWindow( mWindow );
+    SDL_Log("Destroy Window");
 }
 
