@@ -32,22 +32,30 @@ bool Engine::Init() {
 
 void Engine::Start() {
     if(Init() == false) {
-        Error::Fatal("False to init");
+        Error::Fatal("Game engine false to init");
     }
 
-    std::shared_ptr<Hero> hero = std::make_shared<Hero>("../assets/face.png","tree", 0,0,64 ,64),
-        hero2 = std::make_shared<Hero>("../assets/face.png","hel", 100,100,64 ,64);
+    std::shared_ptr<Hero> hero = std::make_shared<BasicHero>(),
+        hero2 = std::make_shared<SimpleHero>();
 
 
     std::vector<std::shared_ptr<Object>> objects{hero, hero2};
 
     SDL_Event event;
+    const Uint8* m = SDL_GetKeyboardState(nullptr);
     while (mMainWindow->isRunning() == WindowsPar::emWindowRunning) {
-        hero->Move(Direction::Down);
         mMainWindow->checkEvent(event);
         mMainWindow->setRender(objects);
-        Debug::Console("running");
-        SDL_Delay(100);
+        if(KeyBoard::GetInstance()->GetKey(SDL_SCANCODE_DOWN)) {
+            hero->Move(Direction::Down);
+            hero->ChangeFrame();
+        }
+        if(KeyBoard::GetInstance()->GetKey(SDL_SCANCODE_UP)) {
+            hero->Move(Direction::Up);
+            hero->ChangeFrame();
+        }
+
+
     }
 }
 

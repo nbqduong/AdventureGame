@@ -11,6 +11,7 @@ set(libraries
         Display
         Logic
         Include
+        Input
 )
 
 # package
@@ -29,7 +30,8 @@ include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 add_subdirectory(Include)
 add_subdirectory(Display)
 add_subdirectory(Logic)
-
+add_subdirectory(Input)
+add_subdirectory(Arrange)
 
 # excutable
 add_executable(${PROJECT_NAME} ${SourceFiles})

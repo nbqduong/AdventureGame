@@ -1,16 +1,12 @@
-set(libname "Display")
+set(libname "Arrange")
 
 set(SOURCES_FILES
-        Hero.cpp
-        Windows.cpp
-        TextureManager.cpp
-
+        GamePosition.cpp
 )
 
 set(INTERNAL_LIBS
-        Include
-        Input
-        Arrange
+
+
 )
 
 set(SDL2_IMAGE_LIBRARIES "/usr/local/lib/libSDL2_image.so")

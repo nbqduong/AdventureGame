@@ -10,13 +10,15 @@
 
 class GamePosition {
     static uint16_t mScale;
-    static uint16_t mFactor;
+    static uint16_t mViewFactor;
+    static uint16_t mSrcFactor;
     static std::shared_ptr<GamePosition> mInstance;
 
 public:
     static std::shared_ptr<GamePosition> GetInstance(){return mInstance = (mInstance != nullptr)? mInstance : std::shared_ptr<GamePosition>(new GamePosition());}
-    static XYWH FullTransfer(uint16_t colum, uint16_t row, uint16_t width=1, uint16_t height=1);
-    static XYWH Move(Direction dir, XYWH &cor);
+    static XYWH Get(uint16_t colum, uint16_t row, uint16_t width=1, uint16_t height=1);
+    static XYWH GetSrc(uint16_t colum, uint16_t row, uint16_t width=1, uint16_t height=1);
+    static bool Move(Direction dir, XYWH &cor);
 };
 
 

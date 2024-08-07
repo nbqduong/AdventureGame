@@ -1,16 +1,11 @@
-set(libname "Display")
+set(libname "Input")
 
 set(SOURCES_FILES
-        Hero.cpp
-        Windows.cpp
-        TextureManager.cpp
-
+        KeyBoard.cpp
 )
 
 set(INTERNAL_LIBS
         Include
-        Input
-        Arrange
 )
 
 set(SDL2_IMAGE_LIBRARIES "/usr/local/lib/libSDL2_image.so")

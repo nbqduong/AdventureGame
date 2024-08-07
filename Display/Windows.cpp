@@ -35,8 +35,7 @@ WindowsPar Windows::create(const char *name, uint16_t width, uint16_t height) {
 
 
 void Windows::checkEvent(SDL_Event &event) {
-    SDL_PollEvent(&event);
-    if(event.type == SDL_QUIT) {
+    if(KeyBoard::GetInstance()->Listen() == UserEvent::emQuit) {
         mStatus = WindowsPar::emWindowExit;
     }
 }

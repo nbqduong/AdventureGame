@@ -7,15 +7,16 @@
 #include <cstdint>
 #include <string>
 #include "Parameters.h"
+#include "GamePosition.h"
 class Object {
 protected:
     XYWH mView;
     std::string mID;
 public:
     Object(const char* link, const std::string &m_id, uint32_t x, uint32_t y, uint32_t width, uint32_t height)
-        :mView(x,y, width, height),
-        mID(m_id) {
-
+        :mID{m_id},
+        mView{GamePosition::Get(x,y,width, height)}
+    {
     }
 
     Object() = default;

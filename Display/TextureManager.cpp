@@ -7,7 +7,7 @@
 
 
 
-std::shared_ptr<TextureManager> TextureManager::sInstance = nullptr;
+std::shared_ptr<TextureManager> TextureManager::mInstance = nullptr;
 
 bool TextureManager::Load(std::string id, std::string filename) {
     SDL_Surface* surface = IMG_Load(filename.c_str());
