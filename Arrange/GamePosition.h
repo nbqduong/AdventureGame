@@ -2,8 +2,8 @@
 // Created by duong on 8/6/24.
 //
 
-#ifndef MAP_H
-#define MAP_H
+#ifndef GAMPOS_H
+#define GAMPOS_H
 #include <cstdint>
 #include <memory>
 #include <Parameters.h>
@@ -23,4 +23,4 @@ public:
 
 
 
-#endif //MAP_H
+#endif //GAMPOS_H

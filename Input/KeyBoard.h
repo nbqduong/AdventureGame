@@ -8,23 +8,31 @@
 #include <SDL.h>
 
 enum class UserEvent {
-    emOther,
     emQuit,
-    emKeyUp,
-    emKeyDown,
+    emUp,
+    emDown,
+    emLeft,
+    emRight,
+    emRepeat,
+    emNone,
 };
 
 class KeyBoard {
     static  std::shared_ptr<KeyBoard> mInstance;
     const Uint8* mKeyState;
     KeyBoard():mKeyState{SDL_GetKeyboardState(nullptr)}{}
-public:
-    static std::shared_ptr<KeyBoard> GetInstance(){ return mInstance = (mInstance != nullptr)? mInstance : std::shared_ptr<KeyBoard>(new KeyBoard());}
-    UserEvent Listen();
+    bool mIsPressed{false},
+        mEventGetted{false};
+    UserEvent mEvent{UserEvent::emNone};
+
+    void Listen();
     void Quit();
     void KeyUp();
     void KeyDown();
     bool GetKey(SDL_Scancode key);
+public:
+    static std::shared_ptr<KeyBoard> GetInstance(){ return mInstance = (mInstance != nullptr)? mInstance : std::shared_ptr<KeyBoard>(new KeyBoard());}
+    UserEvent GetEvent();
 
 };
 

@@ -2,6 +2,9 @@ set(libname "Arrange")
 
 set(SOURCES_FILES
         GamePosition.cpp
+        Map.cpp
+        Frame.cpp
+        Frame.h
 )
 
 set(INTERNAL_LIBS

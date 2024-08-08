@@ -4,38 +4,60 @@
 
 #include "KeyBoard.h"
 
+#include <Debug.h>
+
 std::shared_ptr<KeyBoard> KeyBoard::mInstance = nullptr;
 
-UserEvent KeyBoard::Listen() {
+void KeyBoard::Listen() {
     SDL_Event event;
     SDL_PollEvent(&event);
     switch (event.type) {
         case SDL_QUIT:
             Quit();
-            return UserEvent::emQuit;
+        break;
         case SDL_KEYUP:
             KeyUp();
-            return UserEvent::emKeyUp;
+        break;
         case SDL_KEYDOWN:
             KeyDown();
-            return UserEvent::emKeyDown;
+        break;
         default:
-            return UserEvent::emOther;
+        break;
     }
 }
 
 void KeyBoard::Quit() {
+    mEvent =  UserEvent::emQuit;
 }
 
 void KeyBoard::KeyUp() {
-    mKeyState= SDL_GetKeyboardState(nullptr);
+    mIsPressed = false;
+    Debug::Console("Released");
 }
 
 void KeyBoard::KeyDown() {
-    mKeyState= SDL_GetKeyboardState(nullptr);
+    if(mIsPressed == false) {
+        Debug::Console("Pressed");
+        if(GetKey(SDL_SCANCODE_DOWN) == 1) mEvent =  UserEvent::emDown;
+        if(GetKey(SDL_SCANCODE_UP) == 1) mEvent =  UserEvent::emUp;
+        if(GetKey(SDL_SCANCODE_LEFT) == 1) mEvent =  UserEvent::emLeft;
+        if(GetKey(SDL_SCANCODE_RIGHT) == 1) mEvent =  UserEvent::emRight;
+        if(GetKey(SDL_SCANCODE_ESCAPE) == 1) mEvent =  UserEvent::emQuit;
+    }
+    mIsPressed = true;
 }
 
 bool KeyBoard::GetKey(SDL_Scancode key) {
     return (mKeyState[key] == 1) ? true : false;
 
+}
+
+UserEvent KeyBoard::GetEvent() {
+    Listen();
+    if(mIsPressed == false) {
+        UserEvent tmp = mEvent;
+        mEvent = UserEvent::emNone;
+        return tmp;
+    }
+    return UserEvent::emNone;
 }

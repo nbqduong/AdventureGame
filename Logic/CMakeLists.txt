@@ -7,6 +7,7 @@ set(SOURCES_FILES
 set(INTERNAL_LIBS
         Include
         Display
+        Arrange
 
 )
 

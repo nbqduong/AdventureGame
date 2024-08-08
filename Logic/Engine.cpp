@@ -4,6 +4,10 @@
 
 #include "Engine.h"
 
+#include "Deco.h"
+#include "Frame.h"
+#include "ObjectFactory.h"
+
 Engine::Engine() {
 
 }
@@ -34,28 +38,43 @@ void Engine::Start() {
     if(Init() == false) {
         Error::Fatal("Game engine false to init");
     }
-
-    std::shared_ptr<Hero> hero = std::make_shared<BasicHero>(),
-        hero2 = std::make_shared<SimpleHero>();
-
-
-    std::vector<std::shared_ptr<Object>> objects{hero, hero2};
-
-    SDL_Event event;
+    std::vector<std::shared_ptr<Object>> objects{ObjectFactory::GetInstance()->GetObject()};
+    auto hero = std::make_shared<BasicHero>();
+    objects.push_back(hero);
     const Uint8* m = SDL_GetKeyboardState(nullptr);
-    while (mMainWindow->isRunning() == WindowsPar::emWindowRunning) {
-        mMainWindow->checkEvent(event);
+
+    auto input = KeyBoard::GetInstance();
+    bool  run = true;
+
+    /*-------------------------THE GAME LOOP---------------------------------*/
+    while (run) {
+
         mMainWindow->setRender(objects);
-        if(KeyBoard::GetInstance()->GetKey(SDL_SCANCODE_DOWN)) {
-            hero->Move(Direction::Down);
-            hero->ChangeFrame();
+        auto event = input->GetEvent();
+        switch (event) {
+            case UserEvent::emUp:
+                hero->Move(Direction::Up);
+                hero->ChangeFrame();
+            break;
+            case UserEvent::emDown:
+                hero->Move(Direction::Down);
+                hero->ChangeFrame();
+            break;
+            case UserEvent::emLeft:
+                hero->Move(Direction::Left);
+                hero->ChangeFrame();
+            break;
+            case UserEvent::emRight:
+                hero->Move(Direction::Right);
+                hero->ChangeFrame();
+            break;
+            case UserEvent::emQuit:
+                run = false;
+            break;
+            default:
+            break;
         }
-        if(KeyBoard::GetInstance()->GetKey(SDL_SCANCODE_UP)) {
-            hero->Move(Direction::Up);
-            hero->ChangeFrame();
-        }
-
-
+        Frame::GetInstance()->Delay();
     }
 }
 

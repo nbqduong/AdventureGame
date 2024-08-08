@@ -4,9 +4,9 @@
 
 #include "GamePosition.h"
 
-uint16_t GamePosition::mScale{DEFAULT::mScale};
-uint16_t GamePosition::mViewFactor{uint16_t(mScale*DEFAULT::mViewUnit)};
-uint16_t GamePosition::mSrcFactor{uint16_t(mScale*DEFAULT::mSourceUnit)};
+uint16_t GamePosition::mScale{CURRENT::mScale};
+uint16_t GamePosition::mViewFactor{uint16_t(mScale*CURRENT::mViewUnit)};
+uint16_t GamePosition::mSrcFactor{uint16_t(mScale*CURRENT::mSourceUnit)};
 
 XYWH GamePosition::Get(uint16_t colum, uint16_t row,  uint16_t width, uint16_t height) {
         return XYWH({uint16_t(colum*mViewFactor),uint16_t(row*mViewFactor),uint16_t(width*mViewFactor),uint16_t(height*mViewFactor)});
@@ -25,7 +25,7 @@ bool GamePosition::Move(Direction dir, XYWH &cor) {
                         }
                 break;
                 case Direction::Down:
-                        if(cor.Y < DEFAULT::mScreenHeight - mViewFactor) {
+                        if(cor.Y < CURRENT::mScreenHeight - mViewFactor) {
                                 cor.Y += mViewFactor;
                                 return true;
                         }
@@ -37,7 +37,7 @@ bool GamePosition::Move(Direction dir, XYWH &cor) {
                         }
                 break;
                 default:
-                        if(cor.X < DEFAULT::mScreenWidth - mViewFactor) {
+                        if(cor.X < CURRENT::mScreenWidth - mViewFactor) {
                                 cor.
                                 X += mViewFactor;
                                 return true;

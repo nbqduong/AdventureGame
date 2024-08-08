@@ -34,10 +34,10 @@ WindowsPar Windows::create(const char *name, uint16_t width, uint16_t height) {
 }
 
 
-void Windows::checkEvent(SDL_Event &event) {
-    if(KeyBoard::GetInstance()->Listen() == UserEvent::emQuit) {
-        mStatus = WindowsPar::emWindowExit;
-    }
+void Windows::checkEvent() {
+    // if(KeyBoard::GetInstance()->Listen() == UserEvent::emQuit || KeyBoard::GetInstance()->GetKey(SDL_SCANCODE_ESCAPE) ) {
+    //     mStatus = WindowsPar::emWindowExit;
+    // }
 }
 
 void Windows::setRender(std::vector<std::shared_ptr<Object>> &obj) {

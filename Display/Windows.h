@@ -28,13 +28,13 @@ private:
 
 
 public:
-    Windows(const char* windows_name= "Adventure Game",uint16_t width=DEFAULT::mScreenWidth, uint16_t height = DEFAULT::mScreenHeight);
+    Windows(const char* windows_name= "Adventure Game",uint16_t width=CURRENT::mScreenWidth, uint16_t height = CURRENT::mScreenHeight);
 
     WindowsPar create(const char* name, uint16_t width, uint16_t height);
 
     inline WindowsPar isRunning() const {return mStatus;};
 
-    void checkEvent(SDL_Event &event);
+    void checkEvent();
 
     void setSurface(const SDL_Rect * rect, Uint32 color) const;
 

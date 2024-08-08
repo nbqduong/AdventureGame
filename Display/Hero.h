@@ -24,12 +24,14 @@ public:
 };
  class BasicHero : public Hero {
  public:
-     BasicHero():Hero("../assets/BasicHero.png", "BasicHero", 0,0,1,1){}
+     BasicHero(uint8_t collum = 0, uint8_t row = CURRENT::mDownMost - 2, uint8_t width = 1, uint8_t height = 1)
+        :Hero("../assets/BasicHero.png", "BasicHero", collum,row,width,height){}
  };
 
 class SimpleHero : public Hero {
 public:
-    SimpleHero():Hero("../assets/SimpleHero.png", "SimpleHero", 0,0,1,1){}
+    SimpleHero(uint8_t collum = 0, uint8_t row = CURRENT::mDownMost - 2, uint8_t width = 1, uint8_t height = 1)
+        :Hero("../assets/SimpleHero.png", "SimpleHero",collum,row,width,height){}
 };
 
 

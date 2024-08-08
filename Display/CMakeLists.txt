@@ -4,6 +4,9 @@ set(SOURCES_FILES
         Hero.cpp
         Windows.cpp
         TextureManager.cpp
+        Deco.cpp
+        ObjectFactory.cpp
+        ObjectFactory.h
 
 )
 
