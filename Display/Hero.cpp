@@ -4,6 +4,8 @@
 
 #include "Hero.h"
 
+#include <Collision.h>
+
 
 Hero::Hero(const char* link, const std::string &m_id, uint32_t x, uint32_t y, uint32_t width, uint32_t height)
     :Object(link,m_id,x,y,width,height),
@@ -25,7 +27,7 @@ void Hero::Move(uint32_t x, uint32_t y) {
 }
 
 void Hero::Move(Direction dir) {
-    GamePosition::Move(dir, this->mView);
+    Collision::HeroMove(dir, this->mView);
 }
 
 void Hero::Resize(uint32_t width, uint32_t height) {

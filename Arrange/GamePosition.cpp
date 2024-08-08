@@ -46,3 +46,9 @@ bool GamePosition::Move(Direction dir, XYWH &cor) {
         }
         return false;
 }
+
+uint16_t GamePosition::GetGamePos(uint16_t Pos) {
+        return Pos/mViewFactor;
+}
+
+

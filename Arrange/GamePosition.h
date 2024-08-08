@@ -19,6 +19,7 @@ public:
     static XYWH Get(uint16_t colum, uint16_t row, uint16_t width=1, uint16_t height=1);
     static XYWH GetSrc(uint16_t colum, uint16_t row, uint16_t width=1, uint16_t height=1);
     static bool Move(Direction dir, XYWH &cor);
+    static uint16_t GetGamePos(uint16_t Pos);
 };
 
 

@@ -4,7 +4,7 @@ set(SOURCES_FILES
         GamePosition.cpp
         Map.cpp
         Frame.cpp
-        Frame.h
+        Collision.cpp
 )
 
 set(INTERNAL_LIBS

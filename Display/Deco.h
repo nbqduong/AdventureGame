@@ -27,6 +27,12 @@ public:
 
 };
 
+class GrassDeco : public Deco {
+public:
+    GrassDeco(uint8_t collum=0, uint8_t row=0, uint8_t width = 1, uint8_t height = 1)
+    :Deco("../assets/Grass.png", "Grass", row,collum,width,height) {}
+};
+
 
 
 #endif //DECO_H
