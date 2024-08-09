@@ -27,7 +27,7 @@ void Hero::Move(uint32_t x, uint32_t y) {
 }
 
 void Hero::Move(Direction dir) {
-    Collision::HeroMove(dir, this->mView);
+    GamePosition::Move(dir, this->mView);
 }
 
 void Hero::Resize(uint32_t width, uint32_t height) {

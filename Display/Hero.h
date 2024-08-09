@@ -20,6 +20,8 @@ public:
     virtual void Resize(uint32_t width, uint32_t height);
     virtual void Destroy();
     virtual void ChangeFrame();
+    TouchEvent Touched()override{return TouchEvent::emPass;};
+    XYWH GetPos(){return mView;}
     ~Hero();
 };
  class BasicHero : public Hero {

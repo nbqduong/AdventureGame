@@ -16,6 +16,7 @@ public:
     virtual void Resize(uint32_t width, uint32_t height);
     virtual void Destroy();
     virtual void ChangeFrame();
+    virtual TouchEvent Touched() override{return TouchEvent::emPass;};
     ~Deco();
 };
 
@@ -24,6 +25,7 @@ class BoxDeco : public Deco {
     std::string mID;
 public:
     BoxDeco(uint8_t collum=0, uint8_t row=0, uint8_t width = 1, uint8_t height = 1);
+    TouchEvent Touched() override;
 
 };
 

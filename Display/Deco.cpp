@@ -40,4 +40,9 @@ BoxDeco::BoxDeco(uint8_t collum, uint8_t row, uint8_t width, uint8_t height)
     mID = "Box" + std::to_string(mObjectCount);
 }
 
+TouchEvent BoxDeco::Touched() {
+    Debug::Console("Awwwwwwww");
+    return TouchEvent::emBlock;
+}
+
 uint16_t BoxDeco::mObjectCount = 0;

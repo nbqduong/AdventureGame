@@ -11,11 +11,12 @@
 class Collision : public GamePosition{
     static std::shared_ptr<Map> mMapPtr;
     static std::shared_ptr<Collision> mInstance;
+    XYWH mCollisionPosition{0,0};
     Collision(){};
 public:
-    static auto mGetInstance(){return (mInstance==nullptr)? std::shared_ptr<Collision>(new Collision): mInstance;}
-    static void HeroMove(Direction dir, XYWH &cor);
-
+    static auto GetInstance(){return (mInstance==nullptr)? std::shared_ptr<Collision>(new Collision): mInstance;}
+    static bool Check(Direction dir, XYWH cor);
+    XYWH GetLastCollision(){return mCollisionPosition;}
 
 };
 

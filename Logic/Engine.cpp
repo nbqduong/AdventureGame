@@ -6,6 +6,7 @@
 
 #include "Deco.h"
 #include "Frame.h"
+#include "MovementManager.h"
 #include "ObjectFactory.h"
 
 Engine::Engine() {
@@ -38,43 +39,22 @@ void Engine::Start() {
     if(Init() == false) {
         Error::Fatal("Game engine false to init");
     }
-    std::vector<std::shared_ptr<Object>> objects{ObjectFactory::GetInstance()->GetObject()};
-    auto hero = std::make_shared<BasicHero>();
-    objects.push_back(hero);
-    const Uint8* m = SDL_GetKeyboardState(nullptr);
-
+    auto objects{ObjectFactory::GetInstance()->GetObject()};
+    auto m = SDL_GetKeyboardState(nullptr);
     auto input = KeyBoard::GetInstance();
-    bool  run = true;
+    auto move = MovementManager::GetInstance();
+    auto frame = Frame::GetInstance();
 
     /*-------------------------THE GAME LOOP---------------------------------*/
-    while (run) {
+    while (true) {
 
         mMainWindow->setRender(objects);
         auto event = input->GetEvent();
-        switch (event) {
-            case UserEvent::emUp:
-                hero->Move(Direction::Up);
-                hero->ChangeFrame();
-            break;
-            case UserEvent::emDown:
-                hero->Move(Direction::Down);
-                hero->ChangeFrame();
-            break;
-            case UserEvent::emLeft:
-                hero->Move(Direction::Left);
-                hero->ChangeFrame();
-            break;
-            case UserEvent::emRight:
-                hero->Move(Direction::Right);
-                hero->ChangeFrame();
-            break;
-            case UserEvent::emQuit:
-                run = false;
-            break;
-            default:
-            break;
+        if(event == UserEvent::emQuit) {
+            return;
         }
-        Frame::GetInstance()->Delay();
+        move->Move(event);
+        frame->Delay();
     }
 }
 

@@ -2,6 +2,7 @@ set(libname "Logic")
 
 set(SOURCES_FILES
         Engine.cpp
+        MovementManager.cpp
 )
 
 set(INTERNAL_LIBS

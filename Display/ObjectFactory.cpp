@@ -5,6 +5,7 @@
 #include "ObjectFactory.h"
 
 #include <Deco.h>
+#include <Hero.h>
 #include <iostream>
 std::shared_ptr<ObjectFactory> ObjectFactory::mInstance = nullptr;
 
@@ -25,4 +26,5 @@ ObjectFactory::ObjectFactory() {
 
         }
     }
+    mObjects.push_back(mHero);
 }
